@@ -1,0 +1,28 @@
+    <form  *ngIf="estado"
+      style="margin: 2% auto"
+      [formGroup]="formulario" 
+      (ngSubmit)="modificarEstado()" 
+      fxLayout="column" fxLayoutAlign="space-around center">
+            <mat-form-field appearance="outline" >
+              <mat-label>Nombre Completo</mat-label>
+              <input  matInput formControlName="nombre" placeholder="Placeholder">
+              <mat-icon matSuffix>person_outline</mat-icon>
+              <mat-error *ngIf="formulario.controls['nombre'].errors?.required">
+                  El nombre es <strong>necesario</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" >
+              <mat-label>Correo Electrónico</mat-label>
+              <input [type]="email" matInput formControlName="correo" placeholder="Placeholder">
+              <mat-icon matSuffix>mail</mat-icon>
+              <mat-error *ngIf="formulario.controls['correo'].errors?.required">
+                  El correo es <strong>necesario</strong>
+                </mat-error>
+            </mat-form-field>
+            <div fxLayout="row" fxLayoutAlign="end center" >
+              <button [disabled]="!formulario.valid" mat-raised-button color="accent">
+                Submit
+              </button>
+            </div>
+    </form>
+
