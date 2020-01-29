@@ -13,14 +13,11 @@ export class ApiService {
   getFromApi(endpoint, aux_id = ''){
     return this.http.get(`${constantes.URL}${endpoint}${aux_id}`)
     .pipe(
-      map(res => !endpoint.includes(constantes.LISTAR) ? res['response']['datos']: res['response']['resultado']),
-      tap(console.log)
-      )
+      map(res => !endpoint.includes(constantes.LISTAR) ? res['response']['datos']: res['response']['resultado'])      )
   }
 
   postToApi(client){
     let data = this.getFormData(client)
-    console.log(data.get('nombres'))
     return this.http.post(`${constantes.URL}${constantes.REGISTRO}`, data)
   }
 

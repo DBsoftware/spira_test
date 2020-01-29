@@ -106,7 +106,7 @@
 
             <mat-form-field appearance="outline" fxFlex="45">
               <mat-label>Correo Electrónico</mat-label>
-              <input [type]="email" matInput formControlName="correo" placeholder="Placeholder">
+              <input type="email" matInput formControlName="correo" placeholder="Placeholder">
               <mat-icon matSuffix>mail</mat-icon>
               <mat-error *ngIf="formulario.controls['correo'].errors?.required">
                   El correo es <strong>necesario</strong>

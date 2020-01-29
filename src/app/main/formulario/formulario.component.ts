@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import constantes from "../../constantes";
 import { tap, map } from 'rxjs/operators'; 
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-formulario',
@@ -19,7 +20,7 @@ export class FormularioComponent implements OnInit {
   tipo_id
   states;
   cities;
-  constructor(private api:ApiService) { }
+  constructor(private api:ApiService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.paises = this.api.getFromApi(this.endpoints.PAISES)
@@ -59,12 +60,15 @@ export class FormularioComponent implements OnInit {
   }
   
   guardar() {
-    console.log(this.formulario.value)
     if (this.formulario.valid) {
       this.api.postToApi(this.formulario.value)
-      .subscribe(e => {
-        console.log(e)
-        this.cambio.emit(false)
+      .subscribe((e:any) => {
+        if ('response' in e && 'message' in e['response'] ) {
+          e['response']['message'].forEach(e => this._snackBar.open(e, 'cerrar', {duration: 2000, verticalPosition: 'top'}))
+        }
+        if ('response' in e && 'status' in e['response'] && e['response']['status'] != 0) {
+          this.cambio.emit(false)
+        }
       }, err => console.error)
     }
         
@@ -79,6 +83,11 @@ export class FormularioComponent implements OnInit {
   }
   activarCiudades(event){
     this.cities = this.api.getFromApi(this.endpoints.CIUDADES, event.value)
+                  .pipe(tap(e => {
+                    if (e.length < 1) {
+                      this._snackBar.open('Se debe escoger otro departamento por que este no tiene ciudades', 'cerrar', {duration: 5000, verticalPosition: 'top'})
+                    }                     
+                  }))
     this.formulario.get('ciu_nace').enable()
   }
 

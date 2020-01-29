@@ -4,7 +4,7 @@
     </mat-form-field>
   </div>
   <div class="example-container mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource">
+    <table mat-table [dataSource]="dataSource" matSort>
       
         <!-- Position Column -->
         <ng-container matColumnDef="id" sticky>
@@ -14,13 +14,13 @@
       
         <!-- Name Column -->
         <ng-container matColumnDef="nombres">
-          <th mat-header-cell *matHeaderCellDef> nombres</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> nombres</th>
           <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
         </ng-container>
       
         <!-- Weight Column -->
         <ng-container matColumnDef="apellidos">
-          <th mat-header-cell *matHeaderCellDef> apellidos</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> apellidos</th>
           <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
         </ng-container>
       
