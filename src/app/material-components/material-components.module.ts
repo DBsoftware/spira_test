@@ -5,7 +5,10 @@ import {
   MatButtonModule,
   MatCardModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatSelectModule,
+  MatTableModule,
+  MatPaginatorModule
 } from '@angular/material';
 
 
@@ -17,7 +20,10 @@ import {
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   exports: [
     MatToolbarModule,
@@ -25,7 +31,10 @@ import {
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    MatTableModule,
+    MatPaginatorModule
   ]
 })
 export class MaterialComponentsModule { }

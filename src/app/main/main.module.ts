@@ -5,11 +5,12 @@ import { MainComponent } from './main.component';
 import { MaterialComponentsModule } from '../material-components/material-components.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DataTableComponent } from './data-table/data-table.component';
 
 
 
 @NgModule({
-  declarations: [FormularioComponent, MainComponent],
+  declarations: [FormularioComponent, MainComponent, DataTableComponent],
   imports: [
     CommonModule,
     FormsModule,

@@ -1,16 +1,18 @@
-<mat-card class="card">
-    <mat-card-header>
-      <mat-card-title>Formulario Simple</mat-card-title>
+<mat-card class="card" style="padding: 5%;">
+    <mat-card-header fxLayout="row" fxLayoutAlign="space-between">
+      <mat-card-title *ngIf="flag">Formulario de Registro</mat-card-title>
+      <mat-card-title *ngIf="!flag">Lista de Clientes</mat-card-title>
+      <div *ngIf="!flag"
+      fxLayout="row" fxLayoutAlign="center center" class="mb-5" >
+          <button 
+              (click)="flag = true" 
+              mat-raised-button color="primary">
+              Registrar Cliente
+          </button>
+      </div>
     </mat-card-header>
     <mat-card-content>
-        <div *ngIf="!flag"
-        fxLayout="row" fxLayoutAlign="center center" class="mb-5" >
-            <button 
-                (click)="flag = true" 
-                mat-raised-button color="primary">
-                Abrir formulario!
-            </button>
-        </div>
         <app-formulario [estado]="flag" (cambio)="flag = e" ></app-formulario>
+        <app-data-table *ngIf="!flag"></app-data-table>
     </mat-card-content>
 </mat-card>
