@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>Has seleccionado el registro {{data.id}}</h1>
+<div mat-dialog-content>
+    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="2em">
+        <h3>nombres:</h3> <p>{{data.nombres | titlecase}}</p>       
+    </div> 
+    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="2em">
+        <h3>apellidos:</h3> <p>{{data.apellidos | titlecase}}</p>       
+    </div> 
+    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="2em">
+        <h3>tipoid:</h3> <p>{{data.tipoid}}</p>       
+    </div> 
+    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="2em">
+        <h3>identificacion:</h3> <p>{{data.identificacion}}</p>       
+    </div> 
+    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="2em">
+        <h3>pais:</h3> <p>{{data.pais}}</p>       
+    </div> 
+    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="2em">
+        <h3>estadp:</h3> <p>{{data.estadp}}</p>       
+    </div> 
+    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="2em">
+        <h3>ciudad:</h3> <p>{{data.ciudad}}</p>       
+    </div> 
+    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="2em">
+        <h3>telefono:</h3> <p>{{data.telefono}}</p>       
+    </div> 
+    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="2em">
+        <h3>correo:</h3> <p>{{data.correo}}</p>       
+    </div> 
+<div mat-dialog-actions>
+    <div fxLayout="row" fxLayoutAlign="end" fxFlexFill >
+        <button mat-button (click)="onNoClick()">Close</button>
+    </div>
+</div>
