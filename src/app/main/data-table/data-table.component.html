@@ -9,19 +9,25 @@
         <!-- Position Column -->
         <ng-container matColumnDef="id" sticky>
           <th mat-header-cell *matHeaderCellDef> id </th>
-          <td mat-cell *matCellDef="let element" (click)="openDialog(element)"> {{element.id}} </td>
+          <td mat-cell *matCellDef="let element" (click)="openDialog(element)">
+            <span style="cursor: pointer; text-decoration: underline">{{element.id}} </span>
+          </td>
         </ng-container>
       
         <!-- Name Column -->
         <ng-container matColumnDef="nombres">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> nombres</th>
-          <td mat-cell *matCellDef="let element" (click)="openDialog(element)"> {{element.nombres}} </td>
+          <td mat-cell *matCellDef="let element" (click)="openDialog(element)">
+          <span style="cursor: pointer; text-decoration: underline">{{element.nombres}}</span> 
+            </td>
         </ng-container>
       
         <!-- Weight Column -->
         <ng-container matColumnDef="apellidos">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> apellidos</th>
-          <td mat-cell *matCellDef="let element" (click)="openDialog(element)"> {{element.apellidos}} </td>
+          <td mat-cell *matCellDef="let element" (click)="openDialog(element)">
+            <span style="cursor: pointer; text-decoration: underline">{{element.apellidos}} </span>
+          </td>
         </ng-container>
       
         <!-- Symbol Column -->
@@ -57,7 +63,9 @@
         
         <ng-container matColumnDef="correo">
           <th mat-header-cell *matHeaderCellDef> correo</th>
-          <td mat-cell *matCellDef="let element" (click)="openDialog(element)"> {{element.correo}} </td>
+          <td mat-cell *matCellDef="let element" (click)="openDialog(element)"> 
+            <span style="cursor: pointer; text-decoration: underline">{{element.correo}}</span> 
+          </td>
         </ng-container>
     
         
