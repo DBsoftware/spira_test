@@ -1,5 +1,5 @@
 <mat-accordion>
-    <mat-expansion-panel *ngFor="let item of dataClientes | async">
+    <mat-expansion-panel *ngFor="let item of dataClientes">
       <mat-expansion-panel-header>
         <mat-panel-title>
           {{item.label}}
@@ -7,7 +7,7 @@
       </mat-expansion-panel-header>
       <mat-list>
         <ng-container *ngFor="let i of item.data; let l = last">
-          <mat-list-item>{{i.label}}: &nbsp;&nbsp;<strong>{{i.respuesta}}</strong></mat-list-item>
+          <mat-list-item>{{i.pregunta}}: &nbsp;&nbsp;<strong>{{i.respuesta}}</strong></mat-list-item>
           <mat-divider *ngIf="!l" [inset]="true"></mat-divider>
         </ng-container> 
       </mat-list>

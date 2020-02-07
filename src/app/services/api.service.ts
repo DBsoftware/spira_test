@@ -12,25 +12,18 @@ export class ApiService {
 
   getFromApi(endpoint, aux_id = ''){
     return this.http.get(`${constantes.URL}${endpoint}${aux_id}`)
-    .pipe(
-      map(res => !endpoint.includes(constantes.LISTAR) ? res['response']['datos']: res['response']['resultado'])      )
   }
 
-  postToApi(client){
-    let data = this.getFormData(client)
-    return this.http.post(`${constantes.URL}${constantes.REGISTRO}`, data)
+  postToApi(endpoint, client){
+    let data = client
+    console.log(client)
+    return this.http.post(`${constantes.URL}${endpoint}`, data)
   }
 
-  getFormData(object) {
-    return Object.keys(object).reduce((formData, key) => {
-      formData.append(key, object[key]);
-      return formData;
-    }, new FormData());
-  } 
-
-  getList(busca = '', pagina = 0){
-    return this.http.post(`${constantes.URL}${constantes.LISTAR}`, this.getFormData({busca, pagina}))
+  updateOnApi(endpoint, id){
+    return this.http.patch(`${constantes.URL}${endpoint}/${id}`, {activa: false})
   }
+
 }
 
 

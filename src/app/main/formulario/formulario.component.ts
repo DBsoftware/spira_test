@@ -1,10 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
-import constantes from "../../constantes";
-import { tap, map } from 'rxjs/operators'; 
+import constantes, {mensajes} from "../../constantes";
+import { tap, map, switchMap } from 'rxjs/operators'; 
 import { MatSnackBar } from '@angular/material';
-import dat from './data';
 import { of } from 'rxjs';
 
 @Component({
@@ -13,8 +12,9 @@ import { of } from 'rxjs';
   styleUrls: ['./formulario.component.scss']
 })
 export class FormularioComponent implements OnInit {
-  data = dat;
+  data;
   endpoints =  constantes;
+  notificaciones = mensajes
   @Input() estado;
   @Output() cambio = new EventEmitter();
   numericPatter = /^-?(0|[1-9]\d*)?$/
@@ -36,10 +36,8 @@ export class FormularioComponent implements OnInit {
         Validators.required,Validators.pattern(this.numericPatter)
       ]),
     })
-
-    this.dataApi = of({datos: this.data})
+    this.dataApi = this.api.getFromApi(this.endpoints.QUESTIONS)
     .pipe(
-      map(e => e['datos']),
       map((e: any[]) => e.sort(({orden:a},{orden: b}) => a -b)),
       map((e: any[]) => e.map(e => ({...e, name: `p_${e.id}`}))),
       tap(e => {
@@ -52,19 +50,15 @@ export class FormularioComponent implements OnInit {
   
   guardar() {
     if (this.formulario.valid) {
-      // this.api.postToApi(this.formulario.value)
-      // .subscribe((e:any) => {
-      //   if ('response' in e && 'message' in e['response'] ) {
-      //     e['response']['message'].forEach(e => this._snackBar.open(e, 'cerrar', {duration: 2000, verticalPosition: 'top'}))
-      //   }
-      //   if ('response' in e && 'status' in e['response'] && e['response']['status'] != 0) {
-      //     this.cambio.emit(false)
-      //   }
-      // }, err => console.error)
       let {value} = this.formulario
       let {nombres, correo, telefono} = value
-      let tosave = {nombres, correo, telefono, repuestas: this.organizarRespuesta(value)}
+      let tosave = {nombres, correo, telefono, answers: this.organizarRespuesta(value)}
       console.log(tosave)
+      this.api.postToApi(this.endpoints.CLIENTS,tosave)
+      .subscribe((e:any) => {
+        this._snackBar.open(this.notificaciones.SUCCESS, 'cerrar', {duration: 2000, verticalPosition: 'top'})
+        this.cambio.emit(false)
+      }, err => console.error)
     }      
   }
 
@@ -73,10 +67,13 @@ export class FormularioComponent implements OnInit {
   }
 
   organizarRespuesta(e){
-    delete e['nombres']
-    delete e['correo']
-    delete e['telefono']
-    return Object.keys(e).map(key => ({respuesta: e[key], id_pregunta: key.substr(2)}))
+    let aux = []
+    Object.keys(e).forEach(key => {
+      if (!['nombres', 'telefono', 'correo'].includes(key)) {
+        aux.push({respuesta: e[key], preguntaId: key.substr(2)})
+      }
+    })
+    return aux
   }
   
 

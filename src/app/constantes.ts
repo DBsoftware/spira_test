@@ -1,10 +1,11 @@
 enum ConstantesApi {
-    URL= 'http://wefindyourreadthread.com/webapi/servicios/',
-    PAISES = 'countries',
-    DEPT = 'states/',
-    CIUDADES = 'cities/',
-    TIPO_IDENTIFICACION = 'tidentificacion',
-    LISTAR =  'listarclientes',
-    REGISTRO =  'registration'
+    URL= 'http://localhost:3000/',
+    CLIENTS = 'Client',
+    QUESTIONS = 'questions',
+    ANS = 'answers'
 }
 export default ConstantesApi;
+
+export enum mensajes{
+    SUCCESS = 'La accion se realizó con exito'
+}

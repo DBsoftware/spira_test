@@ -18,9 +18,9 @@ export class ClientDataSource implements DataSource<any> {
     }
   
     loadClients(filter: string = '', pageIndex: number = 0) {
-      this.api.getList(filter, pageIndex)
-      .pipe(
-        map(e => e['response']['resultado']))
-      .subscribe((e: any) => this.clientSubject.next(e))
+      // this.api.getList(filter, pageIndex)
+      // .pipe(
+      //   map(e => e['response']['resultado']))
+      // .subscribe((e: any) => this.clientSubject.next(e))
     }  
 }

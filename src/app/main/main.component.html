@@ -2,15 +2,15 @@
     <mat-card-header fxLayout="row" fxLayoutAlign="space-between">
       <mat-card-title *ngIf="flag">Formulario de Registro</mat-card-title>
       <mat-card-title *ngIf="!flag">Lista de Clientes</mat-card-title>
-      <div *ngIf="!flag" fxLayoutGap="20px"
-      fxLayout="row" fxLayoutAlign="center center" class="mb-5" >
+      <div *ngIf="!flag" fxLayoutGap="1%" fxFlex="60"
+        fxLayout="row wrap" fxLayoutAlign="end" class="mb-5" >
           <button (click)="flag = true" 
               mat-raised-button color="primary">
               Registrar Cliente
           </button>
           <button (click)="exportAsXLSX()" 
               mat-raised-button color="primary">
-              Exportar Datos a excel
+              Exportar Datos
           </button>
           <button (click)="openDialog()" 
               mat-raised-button color="primary">
@@ -21,6 +21,6 @@
     <mat-card-content>
         <app-formulario [estado]="flag" (cambio)="flag = $event" ></app-formulario>
         <!-- <app-data-table *ngIf="!flag"></app-data-table> -->
-        <app-expandables [data]="data" *ngIf="!flag"></app-expandables>
+        <app-expandables [data]="data" *ngIf="!flag && data"></app-expandables>
     </mat-card-content>
 </mat-card>
