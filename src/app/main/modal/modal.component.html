@@ -1,34 +1,28 @@
 <h1 mat-dialog-title>Has seleccionado el registro {{data.id}}</h1>
-<div mat-dialog-content>
-    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="2em">
-        <h3>nombres:</h3> <p>{{data.nombres | titlecase}}</p>       
-    </div> 
-    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="2em">
-        <h3>apellidos:</h3> <p>{{data.apellidos | titlecase}}</p>       
-    </div> 
-    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="2em">
-        <h3>tipoid:</h3> <p>{{data.tipoid}}</p>       
-    </div> 
-    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="2em">
-        <h3>identificacion:</h3> <p>{{data.identificacion}}</p>       
-    </div> 
-    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="2em">
-        <h3>pais:</h3> <p>{{data.pais}}</p>       
-    </div> 
-    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="2em">
-        <h3>estadp:</h3> <p>{{data.estadp}}</p>       
-    </div> 
-    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="2em">
-        <h3>ciudad:</h3> <p>{{data.ciudad}}</p>       
-    </div> 
-    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="2em">
-        <h3>telefono:</h3> <p>{{data.telefono}}</p>       
-    </div> 
-    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="2em">
-        <h3>correo:</h3> <p>{{data.correo}}</p>       
-    </div> 
-<div mat-dialog-actions>
-    <div fxLayout="row" fxLayoutAlign="end" fxFlexFill >
-        <button mat-button (click)="onNoClick()">Close</button>
-    </div>
+<form
+[formGroup]="formulario" 
+(ngSubmit)="guardar()" 
+>
+<div mat-dialog-content fxLayout="row wrap" fxLayoutAlign="space-around center" style="margin: 2% auto"> 
+    <ng-container *ngFor="let item of dataApi | async">
+        <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-around">
+            <mat-form-field appearance="outline" fxFlex="90">
+              <mat-label>{{item.label}}</mat-label>
+              <input  matInput [formControlName]="item.name" placeholder="Placeholder">
+              <mat-error *ngIf="formulario.controls[item.name].errors?.required">
+                  Esta pregunta es <strong>necesaria</strong>
+                </mat-error>
+            </mat-form-field>
+            <button style="margin-top: .75em;" mat-mini-fab aria-label="Example icon-button with a heart icon">
+                <mat-icon>swap_horizontal_circle</mat-icon>
+            </button>
+        </div>
+    </ng-container>
 </div>
+<!-- <div mat-dialog-actions>
+    <div fxLayout="row" fxLayoutAlign="end" fxFlexFill >
+          <button mat-button type="button" (click)="onNoClick()">Close</button>
+          <button mat-button type="submit" >Guardar</button>
+    </div>
+</div> -->
+    </form>

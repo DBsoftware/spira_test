@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div fxLayout=\"row\" fxLayoutAlign=\"center start\" >\n    <div class=\"mat-caption\">\n        Hecho por Diego Bolaños para decameron 2020 &copy;\n    </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div fxLayout=\"row\" fxLayoutAlign=\"center start\" >\n    <div class=\"mat-caption\">\n        Hecho por Diego Bolaños para Intuition 2020 &copy;\n    </div>\n</div>\n");
 
 /***/ }),
 
@@ -58,7 +58,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<mat-toolbar color=\"primary\">\n    <span>Decameron Test</span>\n    <span class=\"example-spacer\"></span>\n    <mat-icon class=\"example-icon\" aria-hidden=\"false\" aria-label=\"Example user verified icon\">verified_user</mat-icon>\n  </mat-toolbar>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<mat-toolbar color=\"primary\">\n    <span>Intuition Test</span>\n    <span class=\"example-spacer\"></span>\n    <mat-icon class=\"example-icon\" aria-hidden=\"false\" aria-label=\"Example user verified icon\">verified_user</mat-icon>\n  </mat-toolbar>\n");
 
 /***/ }),
 
@@ -372,7 +372,7 @@ __webpack_require__.r(__webpack_exports__);
 
 let AppComponent = class AppComponent {
     constructor() {
-        this.title = 'Decameron-test';
+        this.title = 'Intuition-test';
     }
 };
 AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

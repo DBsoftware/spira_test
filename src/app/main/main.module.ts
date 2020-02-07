@@ -7,11 +7,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DataTableComponent } from './data-table/data-table.component';
 import { ModalComponent } from './modal/modal.component';
+import { ExpandablesComponent } from './expandables/expandables.component';
 
 
 
 @NgModule({
-  declarations: [FormularioComponent, MainComponent, DataTableComponent, ModalComponent],
+  declarations: [FormularioComponent, MainComponent, DataTableComponent, ModalComponent, ExpandablesComponent],
   imports: [
     CommonModule,
     FormsModule,

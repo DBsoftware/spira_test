@@ -11,97 +11,6 @@
               <mat-error *ngIf="formulario.controls['nombres'].errors?.required">
                   Los nombres son <strong>necesarios</strong>
                 </mat-error>
-                <mat-error *ngIf="formulario.controls['nombres'].errors?.pattern">
-                  No se pueden usar caracteres especiales
-              </mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" fxFlex="45">
-              <mat-label>Apellidos</mat-label>
-              <input  matInput formControlName="apellidos" placeholder="Placeholder">
-              <mat-icon matSuffix>person_outline</mat-icon>
-              <mat-error *ngIf="formulario.controls['apellidos'].errors?.required">
-                  Los apellidos son <strong>necesarios</strong>
-                </mat-error>
-                <mat-error *ngIf="formulario.controls['apellidos'].errors?.pattern">
-                  No se pueden usar caracteres especiales
-              </mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" fxFlex="45">
-              <mat-label>Tipo identificación</mat-label>
-              <mat-select formControlName="tipoid">
-                <mat-option>--</mat-option>
-                <mat-option *ngFor="let t of tipo_id | async" [value]="t.value">
-                  {{t.name}}
-                </mat-option>
-              </mat-select>
-              <mat-error *ngIf="formulario.controls['tipoid'].errors?.required">
-                El tipo identificacion es <strong>necesario</strong>
-              </mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" fxFlex="45">
-              <mat-label>Número de identificación</mat-label>
-              <input type="number" matInput formControlName="identificacion" placeholder="Placeholder">
-              <mat-icon matSuffix>person_outline</mat-icon>
-              <mat-error *ngIf="formulario.controls['identificacion'].errors?.required">
-                  El numero de identificacion es <strong>necesario</strong>
-                </mat-error>
-              <mat-error *ngIf="formulario.controls['identificacion'].errors?.pattern">
-                  El numero de identificacion es <strong>incorrecto</strong>
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" fxFlex="45">
-              <mat-label>País de nacimiento</mat-label>
-              <mat-select (selectionChange)="activarDept($event)" formControlName="pais_nace">
-                <mat-option>--</mat-option>
-                <mat-option *ngFor="let p of paises | async" [value]="p.id">
-                  {{p.name}}
-                </mat-option>
-              </mat-select>
-              <mat-error *ngIf="formulario.controls['pais_nace'].errors?.required">
-                El pais de nacimiento es <strong>necesario</strong>
-              </mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" fxFlex="45">
-              <mat-label>Departamento de nacimiento</mat-label>
-              <mat-select (selectionChange)="activarCiudades($event)"   formControlName="depto_nace">
-                <mat-option>--</mat-option>
-                <mat-option *ngFor="let d of states | async" [value]="d.id">
-                  {{d.name}}
-                </mat-option>
-              </mat-select>
-              <mat-error *ngIf="formulario.controls['depto_nace'].errors?.required">
-                El departamento es <strong>necesario</strong>
-              </mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" fxFlex="45">
-              <mat-label>Ciudad de nacimiento</mat-label>
-              <mat-select formControlName="ciu_nace">
-                <mat-option>--</mat-option>
-                <mat-option *ngFor="let c of cities | async" [value]="c.id">
-                  {{c.name}}
-                </mat-option>
-              </mat-select>
-              <mat-error *ngIf="formulario.controls['ciu_nace'].errors?.required">
-                La ciudad es <strong>necesaria</strong>
-              </mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" fxFlex="45" >
-              <mat-label>Teléfono</mat-label>
-              <input type="number" matInput formControlName="telefono" placeholder="Placeholder">
-              <mat-icon matSuffix>person_outline</mat-icon>
-              <mat-error *ngIf="formulario.controls['telefono'].errors?.required">
-                  El telefono es <strong>necesario</strong>
-                </mat-error>
-                <mat-error *ngIf="formulario.controls['identificacion'].errors?.pattern">
-                  El número de telefono es <strong>incorrecto</strong>
-                </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" fxFlex="45">
@@ -115,6 +24,32 @@
                   El formato del correo es <strong>incorrecto</strong>
               </mat-error>
             </mat-form-field>
+
+            <mat-form-field appearance="outline" fxFlex="45" >
+              <mat-label>Teléfono</mat-label>
+              <input type="number" matInput formControlName="telefono" placeholder="Placeholder">
+              <mat-error *ngIf="formulario.controls['telefono'].errors?.required">
+                  El telefono es <strong>necesario</strong>
+                </mat-error>
+                <mat-error *ngIf="formulario.controls['telefono'].errors?.pattern">
+                  El número de telefono es <strong>incorrecto</strong>
+                </mat-error>
+            </mat-form-field>
+            
+              <ng-container *ngFor="let item of dataApi | async">
+                <mat-form-field appearance="outline" fxFlex="45">
+                  <mat-label>{{item.pregunta}}</mat-label>
+                  <input  matInput [formControlName]="item.name" placeholder="Placeholder">
+                  <mat-error *ngIf="formulario.controls[item.name].errors?.required">
+                      Esta pregunta es <strong>necesaria</strong>
+                    </mat-error>
+                </mat-form-field>
+              </ng-container>
+            
+            
+            
+
+
 
             <div fxLayout="row" fxLayoutAlign="center" fxFlex="100" style="margin-top: 5%">
               <button [disabled]="!formulario.valid" fxFlex="50" mat-raised-button color="accent">
